@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function AddTodoForm({ addTodoItem }) {
 
-   const [todoCounter, setTodoCounter] = useState(0);
+   const [autoIncrementID, setAutoIncrementID] = useState(0);
 
    function handleAddTodo(event) {
       event.preventDefault();
@@ -10,14 +10,14 @@ export default function AddTodoForm({ addTodoItem }) {
       const todoTitle = event.target.title.value;
       const todoDescription = event.target.description.value;
       const todoExpirationDate = event.target.expirationDate.value;
-
+      
       const item = {
-         id: todoCounter,
+         id: autoIncrementID,
          title: todoTitle,
          description: todoDescription,
          expiration: todoExpirationDate
       }
-      setTodoCounter(prevCounter => prevCounter + 1);
+      setAutoIncrementID(prevData => prevData + 1);
       addTodoItem(item);
       event.target.reset();
    }

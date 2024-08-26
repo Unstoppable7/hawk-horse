@@ -1,21 +1,34 @@
+import { useEffect } from "react";
 import AddTodoForm from "./AddTodoForm"
 import TodoList from "./TodoList";
 import { useState } from "react"
 
+const useCounterTodoList = (todoList) => {
+   const [counterTodoList, setCounterTodoList] = useState(todoList.length);
+
+   useEffect(() => {
+      setCounterTodoList(todoList.length);
+   }, [todoList]);
+
+   return [counterTodoList, setCounterTodoList];
+}
+
 function App() {
 
    const [todoList, setTodoList] = useState([]);
+   const [counterTodoList, setCounterTodoList] = useCounterTodoList(todoList);
 
    function addTodoItem(newItem) {
       setTodoList((previousTodoList) => [...previousTodoList, newItem]);
    }
 
    return (
-      <div>
+      <>
          <h1>Task manager</h1>
+         <small>Task Quantity: {counterTodoList}</small>
          <AddTodoForm addTodoItem={addTodoItem} />
-         <TodoList todoList={todoList}/>
-      </div>
+         <TodoList todoList={todoList} />
+      </>
    )
 }
 
