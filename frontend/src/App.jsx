@@ -18,6 +18,11 @@ function App() {
    const [todoList, setTodoList] = useState([]);
    const [counterTodoList, setCounterTodoList] = useCounterTodoList(todoList);
 
+   function removeTodoItem(id) {
+      const newTodoList = todoList.filter((item) => item.id != id);
+      setTodoList(newTodoList);
+    }
+
    function addTodoItem(newItem) {
       setTodoList((previousTodoList) => [...previousTodoList, newItem]);
    }
@@ -27,7 +32,7 @@ function App() {
          <h1>Task manager</h1>
          <small>Task Quantity: {counterTodoList}</small>
          <AddTodoForm addTodoItem={addTodoItem} />
-         <TodoList todoList={todoList} />
+         <TodoList todoList={todoList} onRemoveTodo={removeTodoItem}/>
       </>
    )
 }
