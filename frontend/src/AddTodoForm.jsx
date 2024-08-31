@@ -3,7 +3,7 @@ import InputWithLabel from "./InputWithLabel";
 import { useRef } from "react";
 import { useEffect } from "react";
 
-export default function AddTodoForm({ addTodoItem }) {
+export default function AddTodoForm({ dispatchTodoList }) {
 
    const [autoIncrementID, setAutoIncrementID] = useState(0);
    const [todoTitle, setTodoTitle] = useState('');
@@ -27,7 +27,8 @@ export default function AddTodoForm({ addTodoItem }) {
          expiration: todoExpirationDate
       }
       setAutoIncrementID(prevData => prevData + 1);
-      addTodoItem(item);
+
+      dispatchTodoList({type: 'ADD_TODO', payload: item});
 
       setTodoTitle('');
       setTodoDescription('');

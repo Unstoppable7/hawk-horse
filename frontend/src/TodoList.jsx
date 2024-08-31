@@ -1,12 +1,12 @@
 import TodoItem from "./TodoItem";
 
-export default function TodoList({ todoList, onRemoveTodo }) {
+export default function TodoList({ todoList, dispatchTodoList }) {
 
    return (
       <ul>
          {
             todoList.map(
-               (item) => <TodoItem key={item.id} item={item} onRemoveTodo={onRemoveTodo}/>
+               (item) => <TodoItem key={item.id} item={item} dispatchTodoList={dispatchTodoList}/>
             )
          }
       </ul>
